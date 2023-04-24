@@ -45,11 +45,15 @@ android {
 }
 
 rootProject.ext["publish.artifactId"] = "readium-adapter-pspdfkit-navigator"
-apply(from = "$rootDir/scripts/publish-module.gradle")
+//apply(from = "$rootDir/scripts/publish-module.gradle")
 
 dependencies {
-    api(project(":readium:readium-shared"))
-    api(project(":readium:readium-navigator"))
+
+    val readium_version = "2.3.0"
+    implementation("org.readium.kotlin-toolkit:readium-streamer:$readium_version")
+    implementation("org.readium.kotlin-toolkit:readium-navigator:$readium_version")
+//    api(project(":readium:readium-shared"))
+//    api(project(":readium:readium-navigator"))
     api(project(":readium:adapters:pspdfkit:readium-adapter-pspdfkit-document"))
 
     implementation(libs.androidx.fragment.ktx)

@@ -40,9 +40,6 @@ android {
     namespace = "org.readium.adapters.pspdfkit"
 }
 
-rootProject.ext["publish.artifactId"] = "readium-adapter-pspdfkit"
-apply(from = "$rootDir/scripts/publish-module.gradle")
-
 dependencies {
     api(project(":readium:adapters:pspdfkit:readium-adapter-pspdfkit-document"))
     api(project(":readium:adapters:pspdfkit:readium-adapter-pspdfkit-navigator"))

@@ -57,30 +57,6 @@ include(":readium:adapters:pspdfkit:pspdfkit-navigator")
 project(":readium:adapters:pspdfkit:pspdfkit-navigator")
     .name = "readium-adapter-pspdfkit-navigator"
 
-include(":readium:lcp")
-project(":readium:lcp")
-    .name = "readium-lcp"
-
-include(":readium:navigator")
-project(":readium:navigator")
-    .name = "readium-navigator"
-
-include(":readium:navigator-media2")
-project(":readium:navigator-media2")
-    .name = "readium-navigator-media2"
-
-include(":readium:opds")
-project(":readium:opds")
-    .name = "readium-opds"
-
-include(":readium:shared")
-project(":readium:shared")
-    .name = "readium-shared"
-
-include(":readium:streamer")
-project(":readium:streamer")
-    .name = "readium-streamer"
-
 if (System.getenv("JITPACK") == null) {
     include("test-app")
 }

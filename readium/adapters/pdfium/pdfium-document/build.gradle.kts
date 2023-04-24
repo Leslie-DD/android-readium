@@ -43,12 +43,11 @@ android {
     namespace = "org.readium.adapters.pdfium.document"
 }
 
-rootProject.ext["publish.artifactId"] = "readium-adapter-pdfium-document"
-apply(from = "$rootDir/scripts/publish-module.gradle")
-
 dependencies {
-    api(project(":readium:readium-shared"))
+//    api(project(":readium:readium-shared"))
 
+    val readium_version = "2.3.0"
+    implementation("org.readium.kotlin-toolkit:readium-shared:$readium_version")
     implementation(libs.androidx.core)
     implementation(libs.pdfium)
     implementation(libs.timber)

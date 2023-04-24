@@ -43,11 +43,11 @@ android {
     namespace = "org.readium.adapters.pspdfkit.document"
 }
 
-rootProject.ext["publish.artifactId"] = "readium-adapter-pspdfkit-document"
-apply(from = "$rootDir/scripts/publish-module.gradle")
-
 dependencies {
-    api(project(":readium:readium-shared"))
+
+    val readium_version = "2.3.0"
+    implementation("org.readium.kotlin-toolkit:readium-shared:$readium_version")
+//    api(project(":readium:readium-shared"))
 
     implementation(libs.androidx.core)
     implementation(libs.timber)

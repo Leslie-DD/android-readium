@@ -66,12 +66,13 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.androidx.legacy.v4)
 
-    implementation(project(":readium:readium-shared"))
-    implementation(project(":readium:readium-streamer"))
-    implementation(project(":readium:readium-navigator"))
-    implementation(project(":readium:readium-navigator-media2"))
-    implementation(project(":readium:readium-opds"))
-    implementation(project(":readium:readium-lcp"))
+    val readium_version = "2.3.0"
+    implementation("org.readium.kotlin-toolkit:readium-shared:$readium_version")
+    implementation("org.readium.kotlin-toolkit:readium-streamer:$readium_version")
+    implementation("org.readium.kotlin-toolkit:readium-navigator:$readium_version")
+    implementation("org.readium.kotlin-toolkit:readium-navigator-media2:$readium_version")
+    implementation("org.readium.kotlin-toolkit:readium-opds:$readium_version")
+    implementation("org.readium.kotlin-toolkit:readium-lcp:$readium_version")
     // Only required if you want to support PDF files using PDFium.
     implementation(project(":readium:adapters:pdfium"))
 
