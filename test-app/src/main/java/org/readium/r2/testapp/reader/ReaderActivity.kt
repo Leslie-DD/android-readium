@@ -31,7 +31,7 @@ import org.readium.r2.testapp.drm.DrmManagementFragment
 import org.readium.r2.testapp.outline.OutlineContract
 import org.readium.r2.testapp.outline.OutlineFragment
 
-/*
+/**
  * An activity to read a publication
  *
  * This class can be used as it is or be inherited from.

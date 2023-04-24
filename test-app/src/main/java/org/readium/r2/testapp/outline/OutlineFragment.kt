@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentResultListener
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -42,9 +41,8 @@ class OutlineFragment : Fragment() {
 
         childFragmentManager.setFragmentResultListener(
             OutlineContract.REQUEST_KEY,
-            this,
-            FragmentResultListener { requestKey, bundle -> setFragmentResult(requestKey, bundle) }
-        )
+            this
+        ) { requestKey, bundle -> setFragmentResult(requestKey, bundle) }
     }
 
     override fun onCreateView(
@@ -60,12 +58,23 @@ class OutlineFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val outlines: List<Outline> = when {
-            publication.conformsTo(Publication.Profile.EPUB) -> listOf(Outline.Contents, Outline.Bookmarks, Outline.Highlights, Outline.PageList, Outline.Landmarks)
+            publication.conformsTo(Publication.Profile.EPUB) -> listOf(
+                Outline.Contents,
+                Outline.Bookmarks,
+                Outline.Highlights,
+                Outline.PageList,
+                Outline.Landmarks
+            )
+
             else -> listOf(Outline.Contents, Outline.Bookmarks)
         }
 
         binding.outlinePager.adapter = OutlineFragmentStateAdapter(this, publication, outlines)
-        TabLayoutMediator(binding.outlineTabLayout, binding.outlinePager) { tab, idx -> tab.setText(outlines[idx].label) }.attach()
+        TabLayoutMediator(binding.outlineTabLayout, binding.outlinePager) { tab, idx ->
+            tab.setText(
+                outlines[idx].label
+            )
+        }.attach()
     }
 }
 

@@ -31,6 +31,9 @@ import org.readium.r2.testapp.opds.GridAutoFitLayoutManager
 import org.readium.r2.testapp.reader.ReaderActivityContract
 import org.readium.r2.testapp.utils.viewLifecycle
 
+/**
+ * book shelf 书架
+ */
 class BookshelfFragment : Fragment() {
 
     private val bookshelfViewModel: BookshelfViewModel by activityViewModels()

@@ -65,6 +65,8 @@ android {
 dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.androidx.legacy.v4)
+    implementation("androidx.appcompat:appcompat:1.4.1")
+    implementation("com.google.android.material:material:1.5.0")
 
     val readium_version = "2.3.0"
     implementation("org.readium.kotlin-toolkit:readium-shared:$readium_version")

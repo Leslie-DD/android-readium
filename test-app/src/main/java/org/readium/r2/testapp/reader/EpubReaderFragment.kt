@@ -14,7 +14,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.FragmentResultListener
 import androidx.fragment.app.commit
 import androidx.fragment.app.commitNow
 import androidx.lifecycle.lifecycleScope
@@ -71,7 +70,8 @@ class EpubReaderFragment : VisualReaderFragment(), EpubNavigatorFragment.Listene
                     )
 
                     // Register the HTML templates for our custom decoration styles.
-                    decorationTemplates[DecorationStyleAnnotationMark::class] = annotationMarkTemplate()
+                    decorationTemplates[DecorationStyleAnnotationMark::class] =
+                        annotationMarkTemplate()
                     decorationTemplates[DecorationStylePageNumber::class] = pageNumberTemplate()
 
                     // Declare a custom font family for reflowable EPUBs.
@@ -93,14 +93,13 @@ class EpubReaderFragment : VisualReaderFragment(), EpubNavigatorFragment.Listene
 
         childFragmentManager.setFragmentResultListener(
             SearchFragment::class.java.name,
-            this,
-            FragmentResultListener { _, result ->
-                menuSearch.collapseActionView()
-                result.getParcelable<Locator>(SearchFragment::class.java.name)?.let {
-                    navigator.go(it)
-                }
+            this
+        ) { _, result ->
+            menuSearch.collapseActionView()
+            result.getParcelable<Locator>(SearchFragment::class.java.name)?.let {
+                navigator.go(it)
             }
-        )
+        }
 
         setHasOptionsMenu(true)
 
@@ -117,10 +116,16 @@ class EpubReaderFragment : VisualReaderFragment(), EpubNavigatorFragment.Listene
 
         if (savedInstanceState == null) {
             childFragmentManager.commitNow {
-                add(R.id.fragment_reader_container, EpubNavigatorFragment::class.java, Bundle(), navigatorFragmentTag)
+                add(
+                    R.id.fragment_reader_container,
+                    EpubNavigatorFragment::class.java,
+                    Bundle(),
+                    navigatorFragmentTag
+                )
             }
         }
-        navigator = childFragmentManager.findFragmentByTag(navigatorFragmentTag) as EpubNavigatorFragment
+        navigator =
+            childFragmentManager.findFragmentByTag(navigatorFragmentTag) as EpubNavigatorFragment
 
         return view
     }
@@ -228,17 +233,24 @@ class EpubReaderFragment : VisualReaderFragment(), EpubNavigatorFragment.Listene
             R.id.search -> {
                 super.onOptionsItemSelected(item)
             }
+
             android.R.id.home -> {
                 menuSearch.collapseActionView()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
 
     private fun showSearchFragment() {
         childFragmentManager.commit {
             childFragmentManager.findFragmentByTag(SEARCH_FRAGMENT_TAG)?.let { remove(it) }
-            add(R.id.fragment_reader_container, SearchFragment::class.java, Bundle(), SEARCH_FRAGMENT_TAG)
+            add(
+                R.id.fragment_reader_container,
+                SearchFragment::class.java,
+                Bundle(),
+                SEARCH_FRAGMENT_TAG
+            )
             hide(navigator)
             addToBackStack(SEARCH_FRAGMENT_TAG)
         }

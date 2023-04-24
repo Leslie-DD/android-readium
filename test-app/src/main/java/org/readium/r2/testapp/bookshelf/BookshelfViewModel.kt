@@ -72,7 +72,7 @@ class BookshelfViewModel(application: Application) : AndroidViewModel(applicatio
         return id
     }
 
-    fun copySamplesFromAssetsToStorage() = viewModelScope.launch(Dispatchers.IO) {
+    private fun copySamplesFromAssetsToStorage() = viewModelScope.launch(Dispatchers.IO) {
         withContext(Dispatchers.IO) {
             if (!preferences.contains("samples")) {
                 val dir = app.storageDir
