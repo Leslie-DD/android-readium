@@ -6,6 +6,7 @@
 
 package org.readium.r2.testapp.bookshelf
 
+import android.content.Intent
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
@@ -25,6 +26,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import org.readium.r2.shared.extensions.tryOrLog
 import org.readium.r2.testapp.R
+import org.readium.r2.testapp.bookshelf.detail.BookDetailActivity
 import org.readium.r2.testapp.databinding.FragmentBookshelfBinding
 import org.readium.r2.testapp.domain.model.Book
 import org.readium.r2.testapp.opds.GridAutoFitLayoutManager
@@ -57,7 +59,14 @@ class BookshelfFragment : Fragment() {
         bookshelfViewModel.channel.receive(viewLifecycleOwner) { handleEvent(it) }
 
         bookshelfAdapter = BookshelfAdapter(
-            onBookClick = { book -> book.id?.let { bookshelfViewModel.openBook(it, requireActivity()) } },
+            onBookClick = { book -> book.id?.let {
+//                bookshelfViewModel.openBook(it, requireActivity())
+
+                val intent = Intent(context, BookDetailActivity::class.java).apply {
+                    putExtra("bookId", it)
+                }
+                startActivity(intent)
+            } },
             onBookLongClick = { book -> confirmDeleteBook(book) }
         )
 

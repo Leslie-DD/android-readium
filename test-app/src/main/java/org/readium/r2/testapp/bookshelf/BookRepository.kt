@@ -26,6 +26,8 @@ class BookRepository(private val booksDao: BooksDao) {
 
     suspend fun get(id: Long) = booksDao.get(id)
 
+    fun getByFlow(id: Long) = booksDao.getByFlow(id)
+
     suspend fun insertBook(href: String, mediaType: MediaType, publication: Publication): Long {
         val book = Book(
             creation = DateTime().toDate().time,

@@ -41,6 +41,9 @@ interface BooksDao {
     @Query("SELECT * FROM " + Book.TABLE_NAME + " WHERE " + Book.ID + " = :id")
     suspend fun get(id: Long): Book?
 
+    @Query("SELECT * FROM " + Book.TABLE_NAME + " WHERE " + Book.ID + " = :id")
+    fun getByFlow(id: Long): Flow<Book>
+
     /**
      * Retrieve all books
      * @return List of books as LiveData

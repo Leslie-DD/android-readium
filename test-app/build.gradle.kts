@@ -78,6 +78,10 @@ dependencies {
     // Only required if you want to support PDF files using PDFium.
     implementation(project(":readium:adapters:pdfium"))
 
+//    implementation("io.coil-kt:coil-compose:2.3.0")
+    implementation("io.coil-kt:coil-compose:2.2.2")
+
+
     implementation(libs.androidx.compose.activity)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)

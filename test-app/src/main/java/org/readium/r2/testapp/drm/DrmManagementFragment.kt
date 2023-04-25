@@ -37,7 +37,7 @@ class DrmManagementFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val publication = ViewModelProvider(requireActivity()).get(ReaderViewModel::class.java).publication
+        val publication = ViewModelProvider(requireActivity())[ReaderViewModel::class.java].publication
         val license = checkNotNull(publication.lcpLicense)
         val renewListener = MaterialRenewListener(
             license = license,
